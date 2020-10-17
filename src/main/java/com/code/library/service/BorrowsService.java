@@ -49,6 +49,7 @@ public class BorrowsService {
         borrowRepository.save(new Borrows( LocalDateTime.now().toString(),"" , sample, student));
     }
 
+    //Test za COMMIT
 //    public void addStudentWithBook(StudentWithBook student){
 //        studentWithBookRepository.save(student);
 //    }
