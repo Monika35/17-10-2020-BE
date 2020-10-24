@@ -1,30 +1,32 @@
 package com.code.library.domain;
 
+
 import javax.persistence.*;
 
 @Entity
-@Table(name = "author", catalog = "library")
+@Table(name = "author", catalog = "elib")
 public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "author_id")
-    private Long id;
+    @Column(name = "id_author")
+    private Integer idAuthor;
 
-    @Column(name = "a_name")
+    @Column(name = "name")
     private String name;
 
-    @Column(name = "a_surname")
-    private String surname;
+    @Column(name = "country")
+    private String country;
+
 
     public Author() {
     }
 
-    public Long getId() {
-        return id;
+    public Integer getIdAuthor() {
+        return idAuthor;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setIdAuthor(Integer idAuthor) {
+        this.idAuthor = idAuthor;
     }
 
     public String getName() {
@@ -35,11 +37,12 @@ public class Author {
         this.name = name;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getCountry() {
+        return country;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setCountry(String country) {
+        this.country = country;
     }
+
 }
