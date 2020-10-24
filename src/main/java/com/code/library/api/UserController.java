@@ -1,6 +1,7 @@
 package com.code.library.api;
 
 import com.code.library.domain.User;
+import com.code.library.dto.LoginRequest;
 import com.code.library.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,5 +26,10 @@ public class UserController {
     @RequestMapping(method = RequestMethod.POST,value = "/addUser")
     public User addUser(@RequestBody User request){
         return userService.addUser(request);
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value="/login")
+    public User getUser(@RequestBody LoginRequest request) throws Exception {
+        return userService.loginUser(request);
     }
 }
