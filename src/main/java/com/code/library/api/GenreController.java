@@ -25,4 +25,9 @@ public class GenreController {
         return genreService.addGenre(genre);
     }
 
+    @GetMapping(path="/{name}")
+    public Genre getGenre(@PathVariable String name) {
+        return genreService.getGenreByName(name);
+    }
+
 }

@@ -29,10 +29,7 @@ public class BookController {
 
     @GetMapping(path="/{id}")
     public Book getBook(@PathVariable String id) {
-        System.out.println("iiiiii" + id);
-        Book b = bookService.getBook(Integer.parseInt(id));
-        System.out.println("the book with id = " + id + " = " + b);
-        return b;
+        return bookService.getBook(Integer.parseInt(id));
     }
 
 //    @GetMapping(value = "/")

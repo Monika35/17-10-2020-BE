@@ -12,7 +12,7 @@ public class Genre {
     @Column(name="id_genre")
     private int id;
 
-    @Column(name="name", nullable = false)
+    @Column(unique=true, name="name", nullable = false)
     private String name;
 
     @Column(name="description", nullable = false)

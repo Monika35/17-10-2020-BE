@@ -22,4 +22,12 @@ public class GenreService {
     public Genre addGenre(Genre genre) {
         return genreRepository.save(genre);
     }
+
+    public Genre getGenre(int id) {
+        return genreRepository.getById(id);
+    }
+
+    public Genre getGenreByName(String genreName) {
+        return genreRepository.getByName(genreName);
+    }
 }
