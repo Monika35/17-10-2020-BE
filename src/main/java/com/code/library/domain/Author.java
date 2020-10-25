@@ -2,6 +2,7 @@ package com.code.library.domain;
 
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "author", catalog = "elib")
@@ -17,6 +18,8 @@ public class Author {
     @Column(name = "country")
     private String country;
 
+    @ManyToMany(mappedBy = "authors")
+    private Set<Book> books;
 
     public Author() {
     }

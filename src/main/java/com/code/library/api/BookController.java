@@ -4,6 +4,7 @@ import com.code.library.domain.Book;
 import com.code.library.service.BookService;
 import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController
@@ -24,6 +25,14 @@ public class BookController {
     @RequestMapping(method = RequestMethod.POST, value="/add")
     public Book addBook(@RequestBody Book book) {
         return bookService.addBook(book);
+    }
+
+    @GetMapping(path="/{id}")
+    public Book getBook(@PathVariable String id) {
+        System.out.println("iiiiii" + id);
+        Book b = bookService.getBook(Integer.parseInt(id));
+        System.out.println("the book with id = " + id + " = " + b);
+        return b;
     }
 
 //    @GetMapping(value = "/")

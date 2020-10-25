@@ -2,6 +2,7 @@ package com.code.library.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @Table(name="book", catalog = "elib")
@@ -23,16 +24,24 @@ public class Book implements Serializable {
     @Column(name="img")
     private String img;
 
-//    @ManyToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "type_id", referencedColumnName = "type_id")
-//    private Type type;
-
-//    @OneToMany(mappedBy = "book")
-//    private List<SampleBook> sampleBooks;
-
+    @ManyToMany
+    @JoinTable(
+            name = "book_author",
+            joinColumns = { @JoinColumn(name="id_book") },
+            inverseJoinColumns = { @JoinColumn(name="id_author") }
+    )
+    private Set<Author> authors;
 
     public Integer getId() {
         return id;
+    }
+
+    public Set<Author> getAuthors() {
+        return authors;
+    }
+
+    public void setAuthors(Set<Author> authors) {
+        this.authors = authors;
     }
 
     public String getTitle() {
@@ -76,6 +85,14 @@ public class Book implements Serializable {
         this.isbn = isbn;
         this.description = description;
         this.img = img;
+    }
+
+    public Book(String title, String isbn, String description, String img, Set<Author> authors) {
+        this.title = title;
+        this.isbn = isbn;
+        this.description = description;
+        this.img = img;
+        this.authors = authors;
     }
 
     public Book() {

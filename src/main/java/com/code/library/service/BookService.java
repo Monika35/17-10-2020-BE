@@ -23,6 +23,14 @@ public class BookService {
         return bookRepository.save(book);
     }
 
+    public Book getBook(Integer bookId) {
+        return bookRepository.getById(bookId);
+    }
+
+//    public List<Book> allBooks() {
+//        return bookRepository.allBooks();
+//    }
+
 
 //    private final TypeRepository typeRepository;
 
