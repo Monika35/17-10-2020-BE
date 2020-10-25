@@ -16,7 +16,6 @@ public class AuthorService {
     }
 
     public List<Author> getAll(){
-        System.out.println("aaaaaaaa");
         return authorRepository.findAll();
     }
 }

@@ -11,7 +11,7 @@
     <groupId>com.code</groupId>
     <artifactId>library</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>Library</name>
+    <title>Library</title>
     <description>Library for Faculty</description>
 
     <properties>

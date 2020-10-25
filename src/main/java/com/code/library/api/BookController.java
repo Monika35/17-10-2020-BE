@@ -1,27 +1,31 @@
-//package com.code.library.api;
-//
-//import com.code.library.domain.BookWithAuthor;
-//import com.code.library.dto.BookRequest;
-//import com.code.library.repository.TypeRepository;
-//import com.code.library.service.BookService;
-//import org.springframework.http.HttpStatus;
-//import org.springframework.http.ResponseEntity;
-//import org.springframework.web.bind.annotation.*;
-//
-//import java.util.List;
-//
-//@RestController
-//@RequestMapping(path = "/api/books")
-//@CrossOrigin
-//public class BookController {
-//    private final BookService bookService;
-//    private final TypeRepository typeRespository;
-//
-//    public BookController(BookService bookService, TypeRepository typeRespository) {
-//        this.bookService = bookService;
-//        this.typeRespository = typeRespository;
-//    }
-//
+package com.code.library.api;
+
+import com.code.library.domain.Book;
+import com.code.library.service.BookService;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping(path = "/api/books")
+@CrossOrigin
+public class BookController {
+    private final BookService bookService;
+
+    public BookController(BookService bookService) {
+        this.bookService = bookService;
+    }
+
+    @GetMapping(value="/list")
+    public List<Book> getAllBooks() {
+        return bookService.getAll();
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value="/add")
+    public Book addBook(@RequestBody Book book) {
+        return bookService.addBook(book);
+    }
+
 //    @GetMapping(value = "/")
 //    public List<BookWithAuthor> getBookWithAuthors() {
 //        return bookService.getBookWithAuthors();
@@ -39,4 +43,4 @@
 //    public void addBook(@RequestBody BookRequest bookRequest) {
 //        bookService.addBook(bookRequest);
 //    }
-//}
+}
