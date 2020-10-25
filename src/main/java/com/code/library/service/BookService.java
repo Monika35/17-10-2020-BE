@@ -2,9 +2,10 @@ package com.code.library.service;
 
 import com.code.library.domain.Author;
 import com.code.library.domain.Book;
+import com.code.library.domain.Genre;
 import com.code.library.dto.AuthorRequest;
 import com.code.library.dto.BookRequest;
-import com.code.library.repository.AuthorRepository;
+import com.code.library.dto.GenreRequest;
 import com.code.library.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,10 +21,16 @@ public class BookService {
     private final BookRepository bookRepository;
 
     private AuthorService authorService;
+    private GenreService genreService;
 
     @Autowired
     public void setAuthorService(AuthorService authorService) {
         this.authorService = authorService;
+    }
+
+    @Autowired
+    public void setGenreService(GenreService genreService) {
+        this.genreService = genreService;
     }
 
     public BookService(BookRepository bookRepository) { this.bookRepository = bookRepository; }
@@ -38,10 +45,17 @@ public class BookService {
 
         Set<Author> authors = new HashSet<>();
         for (AuthorRequest a : bookReq.getAuthors()) {
-            Author author = authorService.getOrUpdateAuthor(a.getName());
+            Author author = authorService.getOrCreateAuthor(a.getName());
             authors.add(author);
         }
         book.setAuthors(authors);
+
+        Set<Genre> genres = new HashSet<>();
+        for (GenreRequest g: bookReq.getGenres()) {
+            Genre genre = genreService.getOrCreateGenre(g.getName());
+            genres.add(genre);
+        }
+        book.setGenres(genres);
 
         return bookRepository.save(book);
     }

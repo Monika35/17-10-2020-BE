@@ -50,5 +50,9 @@ public class Genre {
         this.description = description;
     }
 
+    public Genre(String name) {
+        this.name = name;
+    }
+
     public Genre() {}
 }

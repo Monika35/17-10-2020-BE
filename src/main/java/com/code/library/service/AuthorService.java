@@ -19,7 +19,7 @@ public class AuthorService {
         return authorRepository.findAll();
     }
 
-    public Author getOrUpdateAuthor(String name) {
+    public Author getOrCreateAuthor(String name) {
         Author author = authorRepository.getByName(name);
         if (author != null) {
             return author;

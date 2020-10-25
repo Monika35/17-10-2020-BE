@@ -30,4 +30,13 @@ public class GenreService {
     public Genre getGenreByName(String genreName) {
         return genreRepository.getByName(genreName);
     }
+
+    public Genre getOrCreateGenre(String name) {
+        Genre genre = genreRepository.getByName(name);
+        if (genre != null) {
+            return genre;
+        }
+        genre = new Genre(name);
+        return genreRepository.save(genre);
+    }
 }
