@@ -32,6 +32,14 @@ public class Book implements Serializable {
     )
     private Set<Author> authors;
 
+    @ManyToMany
+    @JoinTable(
+            name = "book_genre",
+            joinColumns = { @JoinColumn(name="id_book") },
+            inverseJoinColumns = { @JoinColumn(name="id_genre") }
+    )
+    private Set<Genre> genres;
+
     public Integer getId() {
         return id;
     }
@@ -78,6 +86,14 @@ public class Book implements Serializable {
 
     public void setImg(String img) {
         this.img = img;
+    }
+
+    public Set<Genre> getGenres() {
+        return genres;
+    }
+
+    public void setGenres(Set<Genre> genres) {
+        this.genres = genres;
     }
 
     public Book(String title, String isbn, String description, String img) {

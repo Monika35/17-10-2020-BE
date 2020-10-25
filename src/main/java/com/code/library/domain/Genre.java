@@ -1,6 +1,7 @@
 package com.code.library.domain;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name="genre", catalog="elib")
@@ -16,6 +17,9 @@ public class Genre {
 
     @Column(name="description", nullable = false)
     private String description;
+
+    @ManyToMany(mappedBy = "genres")
+    private Set<Book> books;
 
     public int getId() {
         return id;
