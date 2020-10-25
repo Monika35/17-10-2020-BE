@@ -12,7 +12,7 @@ public class Author {
     @Column(name = "id_author")
     private Integer idAuthor;
 
-    @Column(name = "name")
+    @Column(unique = true, name = "name")
     private String name;
 
     @Column(name = "country")
@@ -22,6 +22,10 @@ public class Author {
     private Set<Book> books;
 
     public Author() {
+    }
+
+    public Author(String name) {
+        this.name = name;
     }
 
     public Integer getIdAuthor() {
@@ -48,4 +52,13 @@ public class Author {
         this.country = country;
     }
 
+    @Override
+    public String toString() {
+        return "Author{" +
+                "idAuthor=" + idAuthor +
+                ", name='" + name + '\'' +
+                ", country='" + country + '\'' +
+                ", books=" + books +
+                '}';
+    }
 }

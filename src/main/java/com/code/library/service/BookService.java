@@ -1,16 +1,30 @@
 package com.code.library.service;
 
+import com.code.library.domain.Author;
 import com.code.library.domain.Book;
+import com.code.library.dto.AuthorRequest;
+import com.code.library.dto.BookRequest;
+import com.code.library.repository.AuthorRepository;
 import com.code.library.repository.BookRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class BookService {
 
 //    private final BookWithAuthorRepository bookWithAuthorRepository;
     private final BookRepository bookRepository;
+
+    private AuthorService authorService;
+
+    @Autowired
+    public void setAuthorService(AuthorService authorService) {
+        this.authorService = authorService;
+    }
 
     public BookService(BookRepository bookRepository) { this.bookRepository = bookRepository; }
 
@@ -19,7 +33,16 @@ public class BookService {
         return bookRepository.findAll();
     }
 
-    public Book addBook(Book book)  {
+    public Book addBook(BookRequest bookReq)  {
+        Book book = new Book(bookReq.getTitle(), bookReq.getIsbn(), bookReq.getDescription(), bookReq.getImg());
+
+        Set<Author> authors = new HashSet<>();
+        for (AuthorRequest a : bookReq.getAuthors()) {
+            Author author = authorService.getOrUpdateAuthor(a.getName());
+            authors.add(author);
+        }
+        book.setAuthors(authors);
+
         return bookRepository.save(book);
     }
 

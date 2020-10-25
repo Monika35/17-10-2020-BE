@@ -11,11 +11,21 @@ public class AuthorService {
 
     private final AuthorRepository authorRepository;
 
-    public AuthorService(AuthorRepository authorRepository){
+    public AuthorService(AuthorRepository authorRepository) {
         this.authorRepository = authorRepository;
     }
 
-    public List<Author> getAll(){
+    public List<Author> getAll() {
         return authorRepository.findAll();
+    }
+
+    public Author getOrUpdateAuthor(String name) {
+        Author author = authorRepository.getByName(name);
+        if (author != null) {
+            return author;
+        }
+        System.out.println("existing author " + name);
+        author = new Author(name);
+        return authorRepository.save(author);
     }
 }

@@ -2,10 +2,7 @@ package com.code.library.api;
 
 import com.code.library.domain.Author;
 import com.code.library.service.AuthorService;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,4 +22,5 @@ public class AuthorController {
     public List<Author> getBookWithAuthors() {
         return authorService.getAll();
     }
+
 }

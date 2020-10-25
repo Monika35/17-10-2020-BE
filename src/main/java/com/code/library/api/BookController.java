@@ -1,6 +1,7 @@
 package com.code.library.api;
 
 import com.code.library.domain.Book;
+import com.code.library.dto.BookRequest;
 import com.code.library.service.BookService;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +24,7 @@ public class BookController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value="/add")
-    public Book addBook(@RequestBody Book book) {
+    public Book addBook(@RequestBody BookRequest book) {
         return bookService.addBook(book);
     }
 
