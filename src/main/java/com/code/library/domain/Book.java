@@ -1,5 +1,7 @@
 package com.code.library.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
@@ -39,6 +41,10 @@ public class Book implements Serializable {
             inverseJoinColumns = { @JoinColumn(name="id_genre") }
     )
     private Set<Genre> genres;
+
+    @OneToMany(mappedBy = "book", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private Set<Item> items;
 
     public Integer getId() {
         return id;
@@ -94,6 +100,24 @@ public class Book implements Serializable {
 
     public void setGenres(Set<Genre> genres) {
         this.genres = genres;
+    }
+
+    public Set<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(Set<Item> items) {
+        this.items = items;
+    }
+
+    public Book(String title, String isbn, String description, String img, Set<Author> authors, Set<Genre> genres, Set<Item> items) {
+        this.title = title;
+        this.isbn = isbn;
+        this.description = description;
+        this.img = img;
+        this.authors = authors;
+        this.genres = genres;
+        this.items = items;
     }
 
     public Book(String title, String isbn, String description, String img) {
